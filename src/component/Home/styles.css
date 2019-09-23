@@ -1,0 +1,28 @@
+.welcome {
+    margin: 50px;
+}
+
+h1 {
+    letter-spacing: 10px;
+}
+
+p {
+    letter-spacing: 5px;
+}
+
+.goBtn {
+    text-transform: uppercase; 
+}
+
+.gic {
+    margin-right: 15px;
+}
+
+.sidebar{
+    width: 30px;
+    margin-right: 15px;
+}
+
+.sidebar:hover {
+    cursor: pointer;
+}
