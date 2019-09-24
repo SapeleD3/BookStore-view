@@ -14,6 +14,11 @@ p {
     text-transform: uppercase; 
 }
 
+.goBtn:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
 .gic {
     margin-right: 15px;
 }
@@ -25,4 +30,50 @@ p {
 
 .sidebar:hover {
     cursor: pointer;
+}
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    position: fixed;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    background: white;
+    color: #fff;
+    transition: all 0.3s;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    padding: 20px;
+    justify-content: center;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: 0px;
+    }
+    #sidebar.active {
+        margin-left: -250px;
+    }
+}
+
+.navlink {
+    color: black;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.public {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+.fabook {
+    margin-right: 25px;
 }
