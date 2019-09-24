@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import GoogleLogin from 'react-google-login'
 import './styles.css'
 import http from '../../services/httpService'
 import apiUrl from '../../config.json'
@@ -10,12 +11,10 @@ class Welcome extends React.Component {
         isLoggedIn: false
     }
 
-    login = () => {
-        // http.get(`${apiUrl}/auth/google`)
+    log = () => {
         fetch('http://localhost:6536/auth/google')
-            .then(res => res.json())
-            .then(console.log)
     }
+    
     render() {
         return (
             <div className='welcome text-center'>
@@ -38,7 +37,21 @@ class Welcome extends React.Component {
                     this.state.isLoggedIn ?
                         <div></div>
                         :
-                        <Button onClick={this.login} variant='outline-danger' size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button>
+                        <div>
+                            <a href="http://localhost:6536/auth/google" target="_blank"><Button variant='outline-danger' size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button></a>
+
+                            {/* <GoogleLogin
+                            clientId='number'
+                            render={renderProps => (
+                                <Button variant='outline-danger' onClick={renderProps.onClick} disabled={renderProps.disabled} size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button>
+                            )}
+                            onSuccess={this.responseGoogle}
+                            onFailure={this.responseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        /> */}
+                        </div>
+                        
+
                 }
             </div>
         )

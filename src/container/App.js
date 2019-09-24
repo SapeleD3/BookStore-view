@@ -24,9 +24,7 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route path='/' exact component={Home} />
-              <Navigation>
-                <Route path='/dashboard' exact component={Dashboard} />
-              </Navigation>
+              <Route path='/dashboard' exact component={Dashboard} />
               <Route component={NotFound} />
               <ToastContainer />
 
