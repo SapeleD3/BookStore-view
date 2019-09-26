@@ -12,6 +12,7 @@ p {
 
 .goBtn {
     text-transform: uppercase; 
+    margin: 10px;
 }
 
 .goBtn:hover {

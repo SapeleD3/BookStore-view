@@ -1,11 +1,7 @@
-import http from './httpService';
-import { apiUrl } from '../config.json'
+function Login(data) {
+    console.log('AccessToken', data)
+}
 
-const endpoint = `${apiUrl}/auth`
-const token = ''
-
-http.setJwt(getToken())
-
-export function getToken() {
-    return localStorage.getItem(token)
+export default {
+    Login
 }

@@ -2,19 +2,23 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import GoogleLogin from 'react-google-login'
 import './styles.css'
-import http from '../../services/httpService'
-import apiUrl from '../../config.json'
-
+import axios from 'axios'
 
 class Welcome extends React.Component {
-    state = {
-        isLoggedIn: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false
+        }
+        this.responseGoogle = this.responseGoogle.bind(this);
     }
 
-    log = () => {
-        fetch('http://localhost:6536/auth/google')
+
+    async responseGoogle(res) {
+        console.log('googleresponse', res)
+        const data = await Login(res.accessToken);
     }
-    
+
     render() {
         return (
             <div className='welcome text-center'>
@@ -38,19 +42,21 @@ class Welcome extends React.Component {
                         <div></div>
                         :
                         <div>
-                            <a href="http://localhost:6536/auth/google" target="_blank"><Button variant='outline-danger' size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button></a>
-
-                            {/* <GoogleLogin
-                            clientId='number'
-                            render={renderProps => (
-                                <Button variant='outline-danger' onClick={renderProps.onClick} disabled={renderProps.disabled} size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button>
-                            )}
-                            onSuccess={this.responseGoogle}
-                            onFailure={this.responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        /> */}
+                            <GoogleLogin
+                                clientId='566235978229-d04nunit2k0lfsvn4ps952fmmfjgum2i.apps.googleusercontent.com'
+                                render={
+                                    renderProps => (
+                                        <Button variant='outline-danger' size='lg' className='goBtn' onClick={renderProps.onClick} disabled={renderProps.disabled}> <i className='gic fa fa-google right fa-1x'></i>Google Login </Button>
+                                    )
+                                }
+                                onSuccess={this.responseGoogle}
+                                onFailure={this.responseGoogle}
+                            />
+                            {/* <div>
+                            <Button variant='outline-danger' size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login </Button>
+                        </div> */}
                         </div>
-                        
+
 
                 }
             </div>
@@ -58,4 +64,22 @@ class Welcome extends React.Component {
     }
 }
 
+
 export default Welcome
+
+export function Login(data) {
+    const error = []
+    axios.post('http://localhost:6536/user/auth/google', {
+        access_token: data
+    })
+        .then(resp => {
+            if (resp.data.token) {
+                localStorage.setItem('JWT_TOKEN', resp.data.token)
+            } else {
+                error.push(resp.message)
+            }
+        }
+        )
+    // console.log(resp)
+
+}
