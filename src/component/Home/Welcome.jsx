@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import GoogleLogin from 'react-google-login'
 import './styles.css'
+import { sayHi, sayBye } from '../../services/sayServices'
 import axios from 'axios'
 
 class Welcome extends React.Component {
@@ -17,9 +18,12 @@ class Welcome extends React.Component {
     async responseGoogle(res) {
         console.log('googleresponse', res)
         const data = await Login(res.accessToken);
+        console.log(sayBye('Bye'))
+        this.sayHi('Moses')
     }
 
     render() {
+
         return (
             <div className='welcome text-center'>
                 {
