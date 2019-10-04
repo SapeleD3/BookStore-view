@@ -3,28 +3,32 @@ import './App.css';
 import { ToastContainer } from 'react-toastify'
 import Home from '../component/Home/Home'
 import Dashboard from '../component/dashboard/Dashboard'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import Navigation from '../component/Navigation';
+import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import NotFound from './NotFound';
-import queryString from 'query-string'
+import history from '../component/history'
+
+import checkAuth from '../component/HOC/checkAuth'
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest}
+    render={(props) => (
+      checkAuth.isAuth === true ? <Component {...props} /> :
+        <Redirect to='/' />
+    )
+    }
+  />
+);
 
 class App extends React.Component {
-
-  // componentWillMount() {
-  //   const query = queryString.parse(location.search);
-  //   if (query.token) {
-  //     window.localStorage.setItem('token', query.token);
-  //     this.props.history.push('/dashboard')
-  //   }
-  // }
   render() {
     return (
       <React.Fragment>
-        <Router>
+        <Router history={history}>
           <div>
             <Switch>
               <Route path='/' exact component={Home} />
-              <Route path='/dashboard' exact component={Dashboard} />
+              <PrivateRoute path='/dashboard' exact component={Dashboard} />
               <Route component={NotFound} />
               <ToastContainer />
 

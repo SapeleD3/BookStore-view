@@ -2,8 +2,9 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import GoogleLogin from 'react-google-login'
 import './styles.css'
-import { sayHi, sayBye } from '../../services/sayServices'
+import history from '../history'
 import axios from 'axios'
+import checkAuth from '../HOC/checkAuth'
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -16,14 +17,15 @@ class Welcome extends React.Component {
 
 
     async responseGoogle(res) {
-        console.log('googleresponse', res)
-        const data = await Login(res.accessToken);
-        console.log(sayBye('Bye'))
-        this.sayHi('Moses')
+        await Login(res.accessToken);
+        if (res.profileObj.email) {
+            history.push('/dashboard')
+        } else {
+            history.push('/')
+        }
     }
 
     render() {
-
         return (
             <div className='welcome text-center'>
                 {
@@ -79,11 +81,10 @@ export function Login(data) {
         .then(resp => {
             if (resp.data.token) {
                 localStorage.setItem('JWT_TOKEN', resp.data.token)
+                checkAuth.Auth()
             } else {
                 error.push(resp.message)
             }
         }
         )
-    // console.log(resp)
-
 }

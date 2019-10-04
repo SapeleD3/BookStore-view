@@ -12,6 +12,12 @@ class Navigation extends React.Component {
     this.setState({ isActive: !this.state.isActive })
   }
 
+  componentDidMount() {
+    if (this.props.isLoggedIn) {
+      this.setState({ isLoggedIn: true })
+    }
+  }
+
   render() {
     return (
       <div>

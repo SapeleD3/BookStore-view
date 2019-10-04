@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navigation from '../Navigation'
 
 export default class Dashboard extends Component {
+
     render() {
         return (
             <div>
