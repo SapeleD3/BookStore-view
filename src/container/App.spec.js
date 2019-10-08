@@ -4,7 +4,6 @@ import App from './App';
 import Home from '../component/Home/Home'
 import { MemoryRouter
 } from 'react-router'
-import { Route } from 'react-router-dom';
 
 
 describe('App', () => {

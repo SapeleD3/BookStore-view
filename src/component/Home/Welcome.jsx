@@ -5,6 +5,7 @@ import './styles.css'
 import history from '../history'
 import axios from 'axios'
 import checkAuth from '../HOC/checkAuth'
+import secret from '../../services/secret'
 
 class Welcome extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Welcome extends React.Component {
 
 
     async responseGoogle(res) {
-        await Login(res.accessToken);
+        await secret.Login(res.accessToken);
         if (res.profileObj.email) {
             history.push('/dashboard')
         } else {
@@ -49,7 +50,7 @@ class Welcome extends React.Component {
                         :
                         <div>
                             <GoogleLogin
-                                clientId='566235978229-d04nunit2k0lfsvn4ps952fmmfjgum2i.apps.googleusercontent.com'
+                                clientId={secret.clientID}
                                 render={
                                     renderProps => (
                                         <Button variant='outline-danger' size='lg' className='goBtn' onClick={renderProps.onClick} disabled={renderProps.disabled}> <i className='gic fa fa-google right fa-1x'></i>Google Login </Button>
@@ -72,19 +73,3 @@ class Welcome extends React.Component {
 
 
 export default Welcome
-
-export function Login(data) {
-    const error = []
-    axios.post('http://localhost:6536/user/auth/google', {
-        access_token: data
-    })
-        .then(resp => {
-            if (resp.data.token) {
-                localStorage.setItem('JWT_TOKEN', resp.data.token)
-                checkAuth.Auth()
-            } else {
-                error.push(resp.message)
-            }
-        }
-        )
-}
