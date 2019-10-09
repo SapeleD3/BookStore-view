@@ -3,8 +3,6 @@ import { Button } from 'react-bootstrap'
 import GoogleLogin from 'react-google-login'
 import './styles.css'
 import history from '../history'
-import axios from 'axios'
-import checkAuth from '../HOC/checkAuth'
 import secret from '../../services/secret'
 
 class Welcome extends React.Component {

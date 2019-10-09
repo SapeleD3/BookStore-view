@@ -78,3 +78,10 @@ p {
 .fabook {
     margin-right: 25px;
 }
+
+.nav1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

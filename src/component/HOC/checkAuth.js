@@ -1,11 +1,10 @@
 const checkAuth = {
-    isAuth: false,
-    Auth() {
-        const jwtToken = localStorage.getItem('JWT_TOKEN')
-        console.log(this.isAuth);
-        if (jwtToken) {
-            this.isAuth = true;
-        }
+    token: "",
+    Authenticate(){
+      console.log('1',checkAuth.token)
+      const token = localStorage.getItem('JWT_TOKEN')
+      checkAuth.token = token;
+      console.log('2',checkAuth.token)
     }
 }
 

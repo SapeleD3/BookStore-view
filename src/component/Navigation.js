@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import './Home/styles.css'
+import history from './history'
+import {Link} from 'react-router-dom'
 
 class Navigation extends React.Component {
   state = {
@@ -13,9 +15,15 @@ class Navigation extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) {
+    const token = localStorage.getItem("JWT_TOKEN")
+    if (token) {
       this.setState({ isLoggedIn: true })
     }
+  }
+
+  signout = () => {
+    localStorage.removeItem('JWT_TOKEN')
+    window.location.href='/';
   }
 
   render() {
@@ -27,9 +35,8 @@ class Navigation extends React.Component {
           <Nav className="ml-auto">
             {
               this.state.isLoggedIn ?
-                <div className='d-none d-lg-block'>
-                  <Nav.Link aria-controls="basic-navbar-nav">Welcome Moses</Nav.Link>
-                  <Nav.Link> <i className='btn fa fa-sign-out'></i> Logout</Nav.Link>
+                <div className='d-flex justify-content-center'>
+                  <Nav.Link className='nav1'> Welcome Moses</Nav.Link><Button variant='outline-danger' onClick={this.signout}><Link to='/'><i className='btn fa fa-sign-out'></i> Logout</Link></Button>
                 </div>
                 : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
             }

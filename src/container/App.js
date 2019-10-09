@@ -7,34 +7,45 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import NotFound from './NotFound';
 import history from '../component/history'
 
-import checkAuth from '../component/HOC/checkAuth'
+import Nav from '../component/Navigation'
 
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest}
-    render={(props) => (
-      checkAuth.isAuth === true ? <Component {...props} /> :
-        <Redirect to='/' />
-    )
-    }
-  />
-);
 
 class App extends React.Component {
+  state = {
+    isLoggedIn: false
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem("JWT_TOKEN")
+    if (token) {
+      this.setState({ isLoggedIn: true })
+    }
+  }
+
   render() {
+    const token = localStorage.getItem("JWT_TOKEN")
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest}
+        render={(props) => (
+          token ? <Component {...props} /> :
+            <Redirect to='/' />
+        )
+        }
+      />
+    );
     return (
       <React.Fragment>
         <Router history={history}>
+        <Nav />
           <div>
             <Switch>
               <Route path='/' exact component={Home} />
               <PrivateRoute path='/dashboard' exact component={Dashboard} />
-              <Route component={NotFound} />
               <ToastContainer />
-
-              <Route path='/404' component={NotFound} />
-              <Redirect to='/404' />
-
+              <Route path="*">
+                <NotFound />
+              </Route>
             </Switch>
           </div>
         </Router>
