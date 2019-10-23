@@ -1,12 +1,12 @@
 import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import './Home/styles.css'
-import history from './history'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {logoutUser} from '../Redux/actions/userAction'
 
 class Navigation extends React.Component {
   state = {
-    isLoggedIn: false,
     isActive: true
   }
 
@@ -14,19 +14,13 @@ class Navigation extends React.Component {
     this.setState({ isActive: !this.state.isActive })
   }
 
-  componentDidMount() {
-    const token = localStorage.getItem("JWT_TOKEN")
-    if (token) {
-      this.setState({ isLoggedIn: true })
-    }
-  }
 
   signout = () => {
-    localStorage.removeItem('JWT_TOKEN')
-    window.location.href='/';
+    this.props.logoutUser()
   }
 
   render() {
+    const {user : {isLoggedIn}} = this.props
     return (
       <div>
         <Navbar bg="dark" variant="dark" >
@@ -34,7 +28,7 @@ class Navigation extends React.Component {
           <Navbar.Brand href="#home" style={{ color: 'red', fontWeight: 'bold', fontSize: 24, letterSpacing: 6 }}>StoryTeller</Navbar.Brand>
           <Nav className="ml-auto">
             {
-              this.state.isLoggedIn ?
+              isLoggedIn ?
                 <div className='d-flex justify-content-center'>
                   <Nav.Link className='nav1'> Welcome Moses</Nav.Link><Button variant='outline-danger' onClick={this.signout}><Link to='/'><i className='btn fa fa-sign-out'></i> Logout</Link></Button>
                 </div>
@@ -46,7 +40,7 @@ class Navigation extends React.Component {
         <div className="wrapper">
           <Nav id='sidebar' className={this.state.isActive ? 'active' : ''}>
             {
-              this.state.isLoggedIn ?
+              isLoggedIn ?
                 <div>
                   <div className="public">
                     <Nav.Link className='navlink'><i className='fa fa-book fabook'></i> Public Stories</Nav.Link>
@@ -73,4 +67,13 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation
+const mapStateToProps = (state) => ({
+  user: state.user,
+  UI: state.UI
+});
+
+const mapActionsToProps = {
+  logoutUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Navigation)

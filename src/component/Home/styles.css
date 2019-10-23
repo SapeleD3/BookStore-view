@@ -85,3 +85,7 @@ p {
     align-items: center;
     color: white;
 }
+
+.greet  {
+    text-transform: capitalize;
+}

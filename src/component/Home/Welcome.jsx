@@ -5,32 +5,39 @@ import './styles.css'
 import history from '../history'
 import secret from '../../services/secret'
 
+//redux
+import {connect} from 'react-redux'
+import {loginUser, getUser} from '../../Redux/actions/userAction'
+
+
 class Welcome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedIn: false
+            name: '',
+            email: ''
         }
         this.responseGoogle = this.responseGoogle.bind(this);
     }
 
+    componentWillReceiveProps(){
+        
+     
+    }
 
     async responseGoogle(res) {
-        await secret.Login(res.accessToken);
-        if (res.profileObj.email) {
-            history.push('/dashboard')
-        } else {
-            history.push('/')
-        }
+        console.log(res.accessToken)
+        this.props.loginUser(res.accessToken, history)
     }
 
     render() {
+        const {user:  {isLoggedIn} } = this.props
         return (
             <div className='welcome text-center'>
                 {
-                    this.state.isLoggedIn ?
+                    isLoggedIn ?
                         <div>
-                            <h1>Welcome Moses</h1>
+                            <h1 className='greet'>Welcome {this.state.name}</h1>
                             <p>Welcome to StoryBooks 1.0.0</p>
                             <p>Post stories from the best and worst of your life and choose for them to be read by the world or completley private as your own personal diary</p>
                         </div>
@@ -43,7 +50,7 @@ class Welcome extends React.Component {
                 }
 
                 {
-                    this.state.isLoggedIn ?
+                    isLoggedIn ?
                         <div></div>
                         :
                         <div>
@@ -69,5 +76,15 @@ class Welcome extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user,
+    UI: state.UI
+  });
+  
+  const mapActionsToProps = {
+    loginUser,
+    getUser
+  }
 
-export default Welcome
+
+export default connect(mapStateToProps, mapActionsToProps)(Welcome)
