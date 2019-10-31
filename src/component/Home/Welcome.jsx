@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import GoogleLogin from 'react-google-login'
-import './styles.css'
+import './styles.scss'
 import history from '../history'
 import secret from '../../services/secret'
 

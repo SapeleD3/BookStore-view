@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { ToastContainer } from 'react-toastify'
 import Home from '../component/Home/Home'
 import Dashboard from '../component/dashboard/Dashboard'
