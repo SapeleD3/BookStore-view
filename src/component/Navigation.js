@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Button } from 'react-bootstrap'
-import './Home/styles.css'
+import './Home/styles.scss'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logoutUser} from '../Redux/actions/userAction'
