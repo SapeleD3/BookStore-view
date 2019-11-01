@@ -16,7 +16,7 @@ export const loginUser = (data, history) => dispatch => {
     .then(resp => {
       setAuthorizationHeader(resp.data.token);
       dispatch(getUser());
-      history.push('/')
+      history.push('/dashboard')
     })
     .catch(err => {
       dispatch({
@@ -38,10 +38,11 @@ export const getUser = () => (dispatch) => {
     .catch(err => console.log(err))
 }
 
-export const logoutUser = () => (dispatch) => {
+export const logoutUser = (history) => (dispatch) => {
     localStorage.removeItem('JWT_TOKEN');
     delete axios.defaults.headers.common['Authorization'];
     dispatch({type: SET_UNAUTHENTICATED})
+    history.push('/')
 }
 
 

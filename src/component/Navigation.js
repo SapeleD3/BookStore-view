@@ -4,6 +4,7 @@ import './Home/styles.scss'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logoutUser} from '../Redux/actions/userAction'
+import history from "./history";
 
 class Navigation extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class Navigation extends React.Component {
 
 
   signout = () => {
-    this.props.logoutUser()
+    this.props.logoutUser(history)
   }
 
   render() {
@@ -30,7 +31,8 @@ class Navigation extends React.Component {
             {
               isLoggedIn ?
                 <div className='d-flex justify-content-center'>
-                  <Nav.Link className='nav1'> Welcome {userData.name}</Nav.Link><Button variant='outline-danger' onClick={this.signout}><Link to='/'><i className='btn fa fa-sign-out'></i> Logout</Link></Button>
+                  <Nav.Link className='nav1 d-none d-lg-block'> Welcome {userData.name}</Nav.Link>
+                  <Button variant='outline-danger' onClick={this.signout} style={{width: 150, color:'white'}}><i className='fa fa-sign-out d-none d-lg-block'></i> Logout</Button>
                 </div>
                 : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
             }
@@ -43,17 +45,17 @@ class Navigation extends React.Component {
               isLoggedIn ?
                 <div>
                   <div className="public">
-                    <Nav.Link className='navlink'><i className='fa fa-book fabook'></i> Public Stories</Nav.Link>
+                    <Nav.Link className='navlink'><i className='fa fa-book fabook'></i><Link to='/stories'> Public Stories </Link></Nav.Link>
                   </div>
                   <Nav.Link className='navlink'><i className='fa fa-cog fabook'></i> <Link to='dashboard'>DashBoard </Link> </Nav.Link>
-                  <Nav.Link className='navlink'><i className='fa fa-user fabook'></i> My Stories </Nav.Link>
+                  <Nav.Link className='navlink'><i className='fa fa-user fabook'></i><Link to='/stories'> My Stories </Link></Nav.Link>
                   <Nav.Link className='navlink' onClick={this.signout}><i className='fa fa-sign-out fabook'></i><Link to='/'> Logout </Link> </Nav.Link>
                 </div>
                 :
                 <div>
                   <div className="public">
                     <Button variant='outline-danger' size='lg' className='goBtn'> <i className='gic fa fa-google right fa-1x'></i>Google Login</Button>
-                    <Nav.Link className='navlink'><i className='fa fa-book fabook'></i> Public Stories</Nav.Link>
+                    <Nav.Link className='navlink'><i className='fa fa-book fabook'></i><Link to='/stories'> Public Stories </Link></Nav.Link>
                   </div>
 
                 </div>

@@ -15,6 +15,12 @@ import jwtDecode from "jwt-decode";
 import { logoutUser, getUser } from "../Redux/actions/userAction";
 import { SET_AUTHENTICATED } from "../Redux/types";
 import CheckAuth from "../component/HOC/CheckAuth";
+import CheckNotAuth from '../component/HOC/CheckNotAuth'
+import Stories from "../component/story/Stories";
+import Footer from "../component/Footer";
+import { Addbutton } from "../component/HOC/button";
+import Addstories from "../component/story/Addstories";
+import Editstories from "../component/story/Editstories";
 
 class App extends React.Component {
   render() {
@@ -32,6 +38,7 @@ class App extends React.Component {
         store.dispatch(getUser());
       }
     }
+    console.log(store.getState().user.isLoggedIn)
     return (
       <Provider store={store}>
         <React.Fragment>
@@ -39,12 +46,18 @@ class App extends React.Component {
             <Nav />
             <div>
               <Switch>
-                <Route path="/" exact component={Home} />
+                <CheckNotAuth path="/" exact component={Home} />
                 <CheckAuth path="/dashboard" exact component={Dashboard} />
+                <CheckAuth path="/addstories" exact component={Addstories} />
+                <CheckAuth path="/editstories" exact component={Editstories} />
+                <Route path='/stories' component={Stories} />
                 <ToastContainer />
                 <Route component={NotFound} />
               </Switch>
             </div>
+            {store.getState().user.isLoggedIn && <Addbutton />}
+            
+            <Footer />
           </Router>
         </React.Fragment>
       </Provider>
