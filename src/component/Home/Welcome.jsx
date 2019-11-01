@@ -20,24 +20,18 @@ class Welcome extends React.Component {
         this.responseGoogle = this.responseGoogle.bind(this);
     }
 
-    componentWillReceiveProps(){
-        
-     
-    }
-
     async responseGoogle(res) {
-        console.log(res.accessToken)
         this.props.loginUser(res.accessToken, history)
     }
 
     render() {
-        const {user:  {isLoggedIn} } = this.props
+        const {user:  {isLoggedIn, userData} } = this.props
         return (
             <div className='welcome text-center'>
                 {
                     isLoggedIn ?
                         <div>
-                            <h1 className='greet'>Welcome {this.state.name}</h1>
+                            <h1 className='greet'>Welcome {userData.email}</h1>
                             <p>Welcome to StoryBooks 1.0.0</p>
                             <p>Post stories from the best and worst of your life and choose for them to be read by the world or completley private as your own personal diary</p>
                         </div>

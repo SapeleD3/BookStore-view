@@ -20,17 +20,17 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const {user : {isLoggedIn}} = this.props
+    const {user : {isLoggedIn, userData}} = this.props
     return (
       <div>
         <Navbar bg="dark" variant="dark" >
           <div className="sidebar"><i onClick={this.togggleClass} className="fa fa-bars fa-2x"></i></div>
-          <Navbar.Brand href="#home" style={{ color: 'red', fontWeight: 'bold', fontSize: 24, letterSpacing: 6 }}>StoryTeller</Navbar.Brand>
+          <Navbar.Brand href="/" style={{ color: 'red', fontWeight: 'bold', fontSize: 24, letterSpacing: 6 }}>StoryTeller</Navbar.Brand>
           <Nav className="ml-auto">
             {
               isLoggedIn ?
                 <div className='d-flex justify-content-center'>
-                  <Nav.Link className='nav1'> Welcome Moses</Nav.Link><Button variant='outline-danger' onClick={this.signout}><Link to='/'><i className='btn fa fa-sign-out'></i> Logout</Link></Button>
+                  <Nav.Link className='nav1'> Welcome {userData.name}</Nav.Link><Button variant='outline-danger' onClick={this.signout}><Link to='/'><i className='btn fa fa-sign-out'></i> Logout</Link></Button>
                 </div>
                 : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
             }
@@ -45,9 +45,9 @@ class Navigation extends React.Component {
                   <div className="public">
                     <Nav.Link className='navlink'><i className='fa fa-book fabook'></i> Public Stories</Nav.Link>
                   </div>
-                  <Nav.Link className='navlink'><i className='fa fa-cog fabook'></i> DashBoard </Nav.Link>
+                  <Nav.Link className='navlink'><i className='fa fa-cog fabook'></i> <Link to='dashboard'>DashBoard </Link> </Nav.Link>
                   <Nav.Link className='navlink'><i className='fa fa-user fabook'></i> My Stories </Nav.Link>
-                  <Nav.Link className='navlink'><i className='fa fa-sign-out fabook'></i> Logout </Nav.Link>
+                  <Nav.Link className='navlink' onClick={this.signout}><i className='fa fa-sign-out fabook'></i><Link to='/'> Logout </Link> </Nav.Link>
                 </div>
                 :
                 <div>

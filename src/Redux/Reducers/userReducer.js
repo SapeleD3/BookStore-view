@@ -2,7 +2,8 @@ import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER } from '../types'
 
 const initialState = {
     isLoggedIn : false,
-    userData: {}
+    userData: {},
+    message: ''
 }
 
 export default function(state = initialState, action){
@@ -18,7 +19,8 @@ export default function(state = initialState, action){
             return {
                 isLoggedIn: true,
                 loading: false,
-                ...action.payload
+                messagae: action.payload.message,
+                userData: action.payload.userData
             }
         default:
             return state;
