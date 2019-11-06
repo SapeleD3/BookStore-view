@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     return (
       <div className="welcome text-center">
         <div>
-          <h1 className="greet">Welcome {userData.email}</h1>
+          <h3 className="greet">Welcome {userData.name}</h3>
           <p>Welcome to StoryBooks 1.0.0</p>
           <p>
             Post stories from the best and worst of your life and choose for

@@ -18,7 +18,6 @@ import CheckAuth from "../component/HOC/CheckAuth";
 import CheckNotAuth from '../component/HOC/CheckNotAuth'
 import Stories from "../component/story/Stories";
 import Footer from "../component/Footer";
-import { Addbutton } from "../component/HOC/button";
 import Addstories from "../component/story/Addstories";
 import Editstories from "../component/story/Editstories";
 
@@ -28,8 +27,6 @@ class App extends React.Component {
     if (token) {
       const decodedToken = jwtDecode(token);
       if (decodedToken.exp * 1000 < Date.now()) {
-        console.log("1", new Date(decodedToken.exp * 1000));
-        console.log("2", decodedToken.exp * 1000 < Date.now());
         store.dispatch(logoutUser);
         history.push("/");
       } else {
@@ -38,7 +35,6 @@ class App extends React.Component {
         store.dispatch(getUser());
       }
     }
-    console.log(store.getState().user.isLoggedIn)
     return (
       <Provider store={store}>
         <React.Fragment>
@@ -55,8 +51,6 @@ class App extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             </div>
-            {store.getState().user.isLoggedIn && <Addbutton />}
-            
             <Footer />
           </Router>
         </React.Fragment>

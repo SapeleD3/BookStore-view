@@ -24,7 +24,7 @@ class Navigation extends React.Component {
     const {user : {isLoggedIn, userData}} = this.props
     return (
       <div>
-        <Navbar bg="dark" variant="dark" >
+        <Navbar bg="dark" variant="dark" sticky='top' expand="lg" fixed='bottom'>
           <div className="sidebar"><i onClick={this.togggleClass} className="fa fa-bars fa-2x"></i></div>
           <Navbar.Brand href="/" style={{ color: 'red', fontWeight: 'bold', fontSize: 24, letterSpacing: 6 }}>StoryTeller</Navbar.Brand>
           <Nav className="ml-auto">
@@ -32,7 +32,7 @@ class Navigation extends React.Component {
               isLoggedIn ?
                 <div className='d-flex justify-content-center'>
                   <Nav.Link className='nav1 d-none d-lg-block'> Welcome {userData.name}</Nav.Link>
-                  <Button variant='outline-danger' onClick={this.signout} style={{width: 150, color:'white'}}><i className='fa fa-sign-out d-none d-lg-block'></i> Logout</Button>
+                  <Button variant='outline-danger d-none d-lg-block' onClick={this.signout} style={{width: 150, color:'white'}}><i className='fa fa-sign-out d-none d-lg-block'></i> Logout</Button>
                 </div>
                 : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
             }

@@ -1,0 +1,4 @@
+
+                onEditorStateChange={onEditorStateChange}
+                
+                editorState={state2.editorState}
