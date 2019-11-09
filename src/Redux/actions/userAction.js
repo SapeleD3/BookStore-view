@@ -10,7 +10,7 @@ import axios from "axios";
 export const loginUser = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("http://localhost:1234/user/auth/google", {
+    .post("https://young-stream-06168.herokuapp.com/user/auth/google", {
       access_token: data
     })
     .then(resp => {
@@ -28,7 +28,7 @@ export const loginUser = (data, history) => dispatch => {
 
 export const getUser = () => (dispatch) => {
     dispatch({type: LOADING_USER})
-    axios.get('http://localhost:1234/user/me')
+    axios.get('https://young-stream-06168.herokuapp.com/user/me')
     .then(res => {
         dispatch({
             type: SET_USER,
