@@ -6,6 +6,8 @@ import './index.scss';
 import App from './container/App';
 import * as serviceWorker from './serviceWorker';
 import store from "./Redux/store";
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

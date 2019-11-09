@@ -8,9 +8,10 @@ import {Link} from 'react-router-dom'
 const useStyles = makeStyles(theme => ({
     fab: {
         margin: theme.spacing(1),
-        position: 'absolute',
-          bottom: theme.spacing(7),
-          right: theme.spacing(2),
+        position: 'fixed',
+        transform: 'translate(-50%,-50%)',
+          bottom: '15px',
+          left: '85%',
       },
       extendedIcon: {
         marginRight: theme.spacing(2),
@@ -20,8 +21,11 @@ const useStyles = makeStyles(theme => ({
 export const Addbutton = () => {
     const classes = useStyles()
 return (
-    <Link to='/addstories'><Fab color="primary" aria-label="add" className={classes.fab} >
+    <div>
+<Link to='/addstories'><Fab color="primary" aria-label="add" className={classes.fab} >
         <AddIcon />
     </Fab></Link>
+    </div>
+    
 )
 }

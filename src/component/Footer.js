@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 
 function Footer({user : {isLoggedIn}}) {
   return (
-    <Navbar expand="lg" variant="dark" bg='dark' sticky='bottom' fixed='bottom'>
+    <Navbar expand="lg" variant="dark" bg='dark' sticky='bottom'>
       <Container>
         <Navbar.Brand href="/">StoryTeller</Navbar.Brand>
       </Container>

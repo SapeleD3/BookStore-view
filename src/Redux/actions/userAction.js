@@ -48,6 +48,7 @@ export const logoutUser = (history) => (dispatch) => {
 
 const setAuthorizationHeader = (token) => {
     const Token = `Bearer ${token}`
+    console.log('token', Token)
     localStorage.setItem("JWT_TOKEN", Token)
     axios.defaults.headers.common['Authorization'] = Token;
 }

@@ -14,7 +14,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { logoutUser, getUser } from "../Redux/actions/userAction";
 import { SET_AUTHENTICATED } from "../Redux/types";
-import CheckAuth from "../component/HOC/CheckAuth";
+import CheckAuth from "../component/HOC/checkAuth";
 import CheckNotAuth from '../component/HOC/CheckNotAuth'
 import Stories from "../component/story/Stories";
 import Footer from "../component/Footer";
@@ -39,8 +39,9 @@ class App extends React.Component {
       <Provider store={store}>
         <React.Fragment>
           <Router history={history}>
+            <div className='app-container'>
             <Nav />
-            <div>
+            <div className='app-content'>
               <Switch>
                 <CheckNotAuth path="/" exact component={Home} />
                 <CheckAuth path="/dashboard" exact component={Dashboard} />
@@ -52,6 +53,7 @@ class App extends React.Component {
               </Switch>
             </div>
             <Footer />
+            </div>
           </Router>
         </React.Fragment>
       </Provider>

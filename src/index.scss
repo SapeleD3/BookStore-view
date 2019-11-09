@@ -23,3 +23,28 @@ a:visited {
   text-decoration: none;
 }
 
+.wrapper {
+  position: absolute;
+  background-color: white;
+  z-index: 9999999;
+}
+
+.box {
+  box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+  z-index: -1;
+}
+
+.fab {
+  margin: 10px;
+  position: fixed;
+  right: 10px;
+  transform: translate(-50%,-50%);
+  bottom: 15px;
+}
+
+@media screen and (max-width: 900px){
+
+  .fab{
+    left: 90%;
+  }
+}

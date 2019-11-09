@@ -2,3 +2,14 @@
                 onEditorStateChange={onEditorStateChange}
                 
                 editorState={state2.editorState}
+
+                const handleKeyCommand = (command, editorState) => {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if(newState){
+      setEditorState(newState);
+      return 'handled'
+    }
+  }
+  const _onBoldClick = () => {
+    setEditorState(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
+  }

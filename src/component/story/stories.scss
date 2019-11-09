@@ -1,0 +1,22 @@
+.rdwEditorToolbar {
+    flex-wrap: wrap;
+    border: solid 1px black;
+    padding: 10px;
+    width: 94vw;
+    height: auto;
+    overflow: auto;
+    background-color: beige;
+}
+
+@media only screen and (min-width: 548px) {
+    /* For laptop phones: */
+    .rdwEditorToolbar {
+        flex-wrap: wrap;
+        border: solid 1px black;
+        padding: 10px;
+        background-color: beige;
+        width: 648px;
+        height: 560px;
+        overflow: auto;
+    }
+  }

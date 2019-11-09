@@ -24,7 +24,7 @@ class Navigation extends React.Component {
     const {user : {isLoggedIn, userData}} = this.props
     return (
       <div>
-        <Navbar bg="dark" variant="dark" sticky='top' expand="lg" fixed='bottom'>
+        <Navbar bg="dark" variant="dark" sticky='top' expand="lg" >
           <div className="sidebar"><i onClick={this.togggleClass} className="fa fa-bars fa-2x"></i></div>
           <Navbar.Brand href="/" style={{ color: 'red', fontWeight: 'bold', fontSize: 24, letterSpacing: 6 }}>StoryTeller</Navbar.Brand>
           <Nav className="ml-auto">
