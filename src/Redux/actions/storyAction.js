@@ -11,7 +11,7 @@ import axios from 'axios'
 export const sendStory = (data, history) => dispatch => {
     dispatch({ type: LOADING_UI});
     console.log('data', data)
-    axios.post('https://young-stream-06168.herokuapp.com//stories', data)
+    axios.post('https://young-stream-06168.herokuapp.com/stories', data)
     .then(resp => {
         console.log(resp)
         dispatch(getStory());
