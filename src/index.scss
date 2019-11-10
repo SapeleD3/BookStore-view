@@ -45,6 +45,13 @@ a:visited {
 @media screen and (max-width: 900px){
 
   .fab{
-    left: 90%;
+    position: fixed;
+    left: 65%;
   }
+}
+
+
+.edit-fab {
+  top: 40px;
+  left: 85%;
 }

@@ -48,7 +48,7 @@ class Navigation extends React.Component {
                     <Nav.Link className='navlink'><i className='fa fa-book fabook'></i><Link to='/stories'> Public Stories </Link></Nav.Link>
                   </div>
                   <Nav.Link className='navlink'><i className='fa fa-cog fabook'></i> <Link to='dashboard'>DashBoard </Link> </Nav.Link>
-                  <Nav.Link className='navlink'><i className='fa fa-user fabook'></i><Link to='/stories'> My Stories </Link></Nav.Link>
+                  <Nav.Link className='navlink'><i className='fa fa-user fabook'></i><Link to='/mystories'> My Stories </Link></Nav.Link>
                   <Nav.Link className='navlink' onClick={this.signout}><i className='fa fa-sign-out fabook'></i><Link to='/'> Logout </Link> </Nav.Link>
                 </div>
                 :

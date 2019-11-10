@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 
 function Footer({user : {isLoggedIn}}) {
   return (
-    <Navbar expand="lg" variant="dark" bg='dark' sticky='bottom'>
+    <Navbar variant="dark" bg='dark' sticky='bottom'>
       <Container>
         <Navbar.Brand href="/">StoryTeller</Navbar.Brand>
       </Container>
@@ -18,4 +18,4 @@ const mapStateToProps = (state) => ({
   user: state.user
 })
   
-  export default  connect(mapStateToProps)(Footer)
+export default  connect(mapStateToProps)(Footer)

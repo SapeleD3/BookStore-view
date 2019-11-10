@@ -20,6 +20,7 @@ import Stories from "../component/story/Stories";
 import Footer from "../component/Footer";
 import Addstories from "../component/story/Addstories";
 import Editstories from "../component/story/Editstories";
+import MyStory from "../component/story/MyStory";
 
 class App extends React.Component {
   render() {
@@ -47,6 +48,7 @@ class App extends React.Component {
                 <CheckAuth path="/dashboard" exact component={Dashboard} />
                 <CheckAuth path="/addstories" exact component={Addstories} />
                 <CheckAuth path="/editstories" exact component={Editstories} />
+                <CheckAuth path="/mystories" exact component={MyStory} />
                 <Route path='/stories' component={Stories} />
                 <ToastContainer />
                 <Route component={NotFound} />
