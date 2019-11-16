@@ -6,6 +6,7 @@ import Dashboard from "../component/dashboard/Dashboard";
 import { Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import history from "../component/history";
+import Story from '../component/story/Story'
 
 import Nav from "../component/Navigation";
 import { Provider } from "react-redux";
@@ -47,8 +48,9 @@ class App extends React.Component {
                 <CheckNotAuth path="/" exact component={Home} />
                 <CheckAuth path="/dashboard" exact component={Dashboard} />
                 <CheckAuth path="/addstories" exact component={Addstories} />
-                <CheckAuth path="/editstories" exact component={Editstories} />
+                <CheckAuth path="/stories/edit/:id" exact component={Editstories} />
                 <CheckAuth path="/mystories" exact component={MyStory} />
+                <Route path='/stories/:id' exactt component={Story} />
                 <Route path='/stories' component={Stories} />
                 <ToastContainer />
                 <Route component={NotFound} />

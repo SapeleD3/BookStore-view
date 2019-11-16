@@ -77,9 +77,7 @@ const Addstories = () => {
       allowComments: true,
     }
   );
-  console.log('data', userInput)
   const story = useSelector(state => state.story)
-  console.log('storyState', story)
   const dispatch = useDispatch()
   const addStory = (story) => dispatch(sendStory(story, history))
 

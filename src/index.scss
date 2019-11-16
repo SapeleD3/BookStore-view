@@ -31,7 +31,6 @@ a:visited {
 
 .box {
   box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-  z-index: -1;
 }
 
 .fab {
@@ -54,4 +53,9 @@ a:visited {
 .edit-fab {
   top: 40px;
   left: 85%;
+  z-index: 1;
+}
+
+.story-text {
+  height: 125px;
 }

@@ -7,10 +7,12 @@ import {
 } from "../types";
 import axios from "axios";
 
+const url = 'https://young-stream-06168.herokuapp.com'
+
 export const loginUser = (data, history) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("https://young-stream-06168.herokuapp.com/user/auth/google", {
+    .post(`${url}/user/auth/google`, {
       access_token: data
     })
     .then(resp => {
@@ -28,14 +30,18 @@ export const loginUser = (data, history) => dispatch => {
 
 export const getUser = () => (dispatch) => {
     dispatch({type: LOADING_USER})
-    axios.get('https://young-stream-06168.herokuapp.com/user/me')
+    axios.get(`${url}/user/me`)
     .then(res => {
+      if(res.status === 200){
         dispatch({
-            type: SET_USER,
-            payload: res.data
-        })
+          type: SET_USER,
+          payload: res.data
+      })
+      }else {
+        dispatch(logoutUser());
+      }
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log('11',err))
 }
 
 export const logoutUser = (history) => (dispatch) => {

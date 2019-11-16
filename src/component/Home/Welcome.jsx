@@ -26,7 +26,6 @@ class Welcome extends React.Component {
 
     render() {
         const {user:  {isLoggedIn, userData} } = this.props
-        console.log(userData.name)
         return (
             <div className='welcome text-center'>
                 {

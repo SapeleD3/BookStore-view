@@ -9,9 +9,9 @@ import "./stories.scss";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import { getAstory, updateStory } from "../../Redux/actions/storyAction";
-import htmlToDraft from "html-to-draftjs";
-import { stripTags } from "../HOC/helper";
+import { getAstory, sendStory } from "../../Redux/actions/storyAction";
+import htmlToDraft from 'html-to-draftjs'
+import { stripTags } from '../HOC/helper'
 import history from "../history";
 
 import { connect } from "react-redux";
@@ -48,41 +48,37 @@ const styles = {
 class Editstories extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      editorState: EditorState.createEmpty(),
+    let html = ''
+    const contentBlock = htmlToDraft(html);
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const editorState = EditorState.createWithContent(contentState);
+      this.state = {
+      editorState,
       title: "",
       status: "",
+      body: "",
       allowComments: true
     };
   }
+}
+
 
   componentDidMount() {
-    fetch(
-      `https://young-stream-06168.herokuapp.com/stories/${this.props.match.params.id}`
-    )
-      .then(res => res.json())
-      .then(story => {
-        this.setState({
-          title: story.title,
-          status: story.status,
-          allowComments: story.allowComments
-        });
-        const html = story.body;
-        const contentBlock = htmlToDraft(html);
-        if (contentBlock) {
-          const contentState = ContentState.createFromBlockArray(
-            contentBlock.contentBlocks
-          );
-          const editorState = EditorState.createWithContent(contentState);
-          this.setState({
-            editorState
-          });
-        }
-      });
+    fetch(`https://young-stream-06168.herokuapp.com/stories/${this.props.match.params.id}`)
+    .then(res => res.json())
+    .then(story => {
+      this.setState({
+        title: story.title,
+        status: story.status,
+        allowComments: story.allowComments,
+        body: story.body
+      })
+    })
   }
 
   onEditorStateChange = editorState => {
-    this.setState({ editorState });
+    this.setState({editorState});
   };
 
   handleChange = e => {
@@ -103,9 +99,12 @@ class Editstories extends React.Component {
       allowComments: this.state.allowComments,
       body: blocks
     };
-    this.props.updateStory(addStory, history, this.props.match.params.id);
+    console.log(blocks)
+
+    // this.props.sendStory(addStory, history);
   };
   render() {
+    console.log(this.state)
     const statuses = [
       {
         value: "public",
@@ -120,11 +119,9 @@ class Editstories extends React.Component {
         label: "unpublished"
       }
     ];
-    const {
-      classes,
-      story: { story }
-    } = this.props;
+    const { classes, story: {story} } = this.props;
     const { title, status, allowComments, editorState, body } = this.state;
+    console.log(body)
     return (
       <Grid container className={classes.form}>
         <Grid item sm />
@@ -210,7 +207,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  updateStory,
+  sendStory,
   getAstory
 };
 
