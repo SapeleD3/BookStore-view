@@ -8,7 +8,8 @@ import {
 
 import axios from 'axios'
 
-const url = 'https://young-stream-06168.herokuapp.com'
+// const url = 'https://young-stream-06168.herokuapp.com'
+const url = 'http://localhost:1234'
 
 export const sendStory = (data, history) => dispatch => {
     dispatch({ type: LOADING_UI});
@@ -47,13 +48,11 @@ export const getMyStory = () =>(dispatch) =>  {
     dispatch({type: LOAD_STORY})
     axios.get(`${url}/stories/new`)
     .then(res => {
-        console.log('from st', res.data)
         dispatch({type: CLEAR_ERRORS})
         dispatch({
             type: SET_STORY,
             payload: res.data
         })
-        return res.data
     })
     .catch(err => console.log(err))
 }
@@ -80,7 +79,6 @@ export const updateStory = (data, history, id) => dispatch => {
     console.log('id', id)
     axios.put(`${url}/stories/${id}`, data)
     .then(resp => {
-        dispatch(getStory());
         dispatch({type: CLEAR_ERRORS})
         history.push('/dashboard')
     })
@@ -97,6 +95,37 @@ export const deleteAstory = (id) =>(dispatch) =>  {
     axios.delete(`${url}/stories/${id}`)
     .then(res => {
         console.log('from a', res.data)
+        dispatch({type: CLEAR_ERRORS})
+        dispatch(getMyStory())
+        dispatch({
+            type: SET_STORY,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err))
+}
+
+export const addComment = (id, data, history) => (dispatch) => {
+    console.log(id, data)
+    dispatch({type: LOADING_UI})
+    axios.post(`${url}/stories/comment/${id}`, data)
+    .then(res => {
+        dispatch({type: CLEAR_ERRORS})
+        dispatch(getAstory(id))
+        dispatch({
+            type: SET_STORY,
+            payload: res.data
+        })
+        history.push(`/stories`)
+        dispatch(getStory())
+    })
+    .catch(err => console.log(err))
+}
+
+export const getUserStory = (id) =>(dispatch) =>  {
+    dispatch({type: LOAD_STORY})
+    axios.get(`${url}/stories/user/${id}`)
+    .then(res => {
         dispatch({type: CLEAR_ERRORS})
         dispatch({
             type: SET_STORY,

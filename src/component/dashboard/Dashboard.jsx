@@ -146,7 +146,6 @@ class Dashboard extends React.Component {
       story: { story },
       user: { userData }
     } = this.props;
-
     const { page, rowsPerPage } = this.state;
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, story.length - page * rowsPerPage);

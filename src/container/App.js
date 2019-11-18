@@ -22,6 +22,7 @@ import Footer from "../component/Footer";
 import Addstories from "../component/story/Addstories";
 import Editstories from "../component/story/Editstories";
 import MyStory from "../component/story/MyStory";
+import OtherUser from "../component/story/OtherUser";
 
 class App extends React.Component {
   render() {
@@ -50,7 +51,8 @@ class App extends React.Component {
                 <CheckAuth path="/addstories" exact component={Addstories} />
                 <CheckAuth path="/stories/edit/:id" exact component={Editstories} />
                 <CheckAuth path="/mystories" exact component={MyStory} />
-                <Route path='/stories/:id' exactt component={Story} />
+                <Route path='/stories/:id' exact component={Story} />
+                <Route path='/stories/user/:id' exact component={OtherUser} />
                 <Route path='/stories' component={Stories} />
                 <ToastContainer />
                 <Route component={NotFound} />

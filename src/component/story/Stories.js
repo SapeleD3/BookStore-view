@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import Fab from "@material-ui/core/Fab";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getStory } from "../../Redux/actions/storyAction";
 import EditIcon from "@material-ui/icons/Edit";
 

@@ -37,7 +37,7 @@ class Navigation extends React.Component {
                 : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
             }
           </Nav>
-
+          {userData.name === undefined && this.signout}
         </Navbar>
         <div className="wrapper">
           <Nav id='sidebar' className={this.state.isActive ? 'active' : ''}>
