@@ -8,8 +8,8 @@ import {
 
 import axios from 'axios'
 
-// const url = 'https://young-stream-06168.herokuapp.com'
-const url = 'http://localhost:1234'
+const url = 'https://young-stream-06168.herokuapp.com'
+// const url = 'http://localhost:1234'
 
 export const sendStory = (data, history) => dispatch => {
     dispatch({ type: LOADING_UI});
