@@ -34,7 +34,7 @@ class Navigation extends React.Component {
                   <Nav.Link className='nav1 d-none d-lg-block'> Welcome {userData.name}</Nav.Link>
                   <Button variant='outline-danger d-none d-lg-block' onClick={this.signout} style={{width: 150, color:'white'}}><i className='fa fa-sign-out d-none d-lg-block'></i> Logout</Button>
                 </div>
-                : <Nav.Link className=' d-none d-lg-block'><i className="fa fa-book"></i> Public Stories</Nav.Link>
+                : <Nav.Link className=' d-none d-lg-block'><Link to='/stories'><i className="fa fa-book"></i> Public Storie</Link>s</Nav.Link>
             }
           </Nav>
           {userData.name === undefined && this.signout}
