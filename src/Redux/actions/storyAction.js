@@ -62,7 +62,6 @@ export const getAstory = (id) =>(dispatch) =>  {
     dispatch({type: LOAD_STORY})
     axios.get(`${url}/stories/${id}`)
     .then(res => {
-        console.log('from a', res)
         dispatch({type: CLEAR_ERRORS})
         dispatch({
             type: SET_STORY,

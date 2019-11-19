@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 import TablePagination from "@material-ui/core/TablePagination";
+import Button from '@material-ui/core/Button'
 import IconButton from "@material-ui/core/IconButton";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
@@ -187,23 +188,23 @@ class Dashboard extends React.Component {
                         <TableCell align="left">{row.status}</TableCell>
                         <TableCell align="right">
                           <Link to={`/stories/edit/${row._id}`}>
-                            <button variant="success">
+                            <Button variant="success">
                               <i
                                 className="fa fa-pencil"
                                 style={{ marginRight: 5 }}
                               ></i>
                               Edit
-                            </button>
+                            </Button>
                           </Link>
                         </TableCell>
                         <TableCell align="right">
-                          <button onClick={() => this.handleDelete(row._id)}>
+                          <Button onClick={() => this.handleDelete(row._id)}>
                             <i
                               className="fa fa-remove"
                               style={{ marginRight: 5 }}
                             ></i>
                             Delete
-                          </button>
+                          </Button>
                         </TableCell>
                       </TableRow>
                     )
